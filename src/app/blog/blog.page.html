@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>RemoteStack</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label>
+      <strong>RS Blog</strong>
+    </ion-label>
+    <ion-badge color="danger" *ngIf="blogCount">{{ blogCount }}</ion-badge>
+  </ion-item>
+
+  <ion-card *ngFor="let item of WpItems">
+    <ion-card-header>
+      <ion-card-title [innerHTML]="item.title.rendered"></ion-card-title>
+      <ion-card-subtitle>{{ loadData.date_gmt | date }}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div [innerHTML]="item.excerpt.rendered"></div>
+      <ion-button expand="full" fill="clear" [routerLink]="['/', 'single', item.id]">Load More</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-infinite-scroll threshold="140px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingText="Getting Blog Items">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

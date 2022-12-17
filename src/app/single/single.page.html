@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button defaultHref="/blog"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ postInfo?.title.rendered }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div *ngIf="postInfo">
+    <div [innerHTML]="postInfo.content.rendered" padding></div>
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="full" (click)="visitRealPost()">
+      View Real Blog
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
